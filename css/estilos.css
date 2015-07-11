@@ -1,0 +1,21 @@
+a.footer{
+    float: left; 
+    position: relative; 
+    left: 496px; 
+    background: url(../img/sprites.png) no-repeat -112px 0; 
+    width: 115px; 
+    height: 25px;
+}
+
+p.footer{
+    text-align: center; 
+    position: relative; 
+    left: 45px; 
+    margin-top: 13px; 
+    top: 1px;
+}
+
+div.footer{
+    height: 50px; 
+    margin-top: 180px;
+}
