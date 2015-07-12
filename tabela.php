@@ -30,7 +30,7 @@
             $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
             $links = ( isset($_GET['links']) ) ? $_GET['links'] : 7;
             $Paginator = new Paginator($conn, $sql);
-            $results = $Paginator->getData($page, $limit);
+            $results = $Paginator->getData($limit, $page);
 
             for ($i = 0; $i < count($results->data); $i++) {
                 echo "<tr>";
@@ -49,18 +49,26 @@
             $campos = '';
             if (isset($_POST['dtInicio'])) {
                 $campos = $campos . 'dtInicio=' .$_POST['dtInicio'] . '&';
+            } elseif (isset ($_GET['dtInicio'])) {
+                $campos = $campos . 'dtInicio=' .$_GET['dtInicio'] . '&';
             }
 
             if (isset($_POST['dtFim'])) {
                 $campos = $campos . 'dtFim=' .$_POST['dtFim'] . '&';
+             } elseif (isset ($_GET['dtFim'])) {
+                $campos = $campos . 'dtFim=' .$_GET['dtFim'] . '&';
             }
             
             if (isset($_POST['expediente'])) {
                 $campos = $campos . 'expediente=' .$_POST['expediente'] . '&';
+             } elseif (isset ($_GET['expediente'])) {
+                $campos = $campos . 'expediente=' .$_GET['expediente'] . '&';
             }
             
             if (isset($_POST['usuario'])) {
                 $campos = $campos . 'usuario=' .$_POST['usuario']. '&';
+             } elseif (isset ($_GET['usuario'])) {
+                $campos = $campos . 'usuario=' .$_GET['usuario'] . '&';
             }
             
             echo $Paginator->createLinks($links, 'pagination pagination-sm', $campos);

@@ -6,18 +6,18 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="dtInicio">De</label>
-                    <input type="text" class="form-control date" id="dtInicio" name="dtInicio" placeholder="Data de inicio" value="<?php echo (isset($_POST['dtInicio'])) ? $_POST['dtInicio'] : ''; ?>"  required>
+                    <input type="text" class="form-control date" id="dtInicio" name="dtInicio" placeholder="Data de inicio" value="<?php echo traduz_data_para_exibir($dtInicio); ?>"  required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="dtFim">Até</label>
-                    <input type="text" class="form-control date" id="dtFim" name="dtFim" placeholder="Data fim" value="<?php echo (isset($_POST['dtFim'])) ? $_POST['dtFim'] : ''; ?>">
+                    <input type="text" class="form-control date" id="dtFim" name="dtFim" placeholder="Data fim" value="<?php echo traduz_data_para_exibir($dtFim); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="Expediente">Expediente</label>
-                        <input type="text" class="form-control expediente" id="expediente" name="expediente" placeholder="Expediente" value="<?php echo (isset($_POST['expediente'])) ? $_POST['expediente'] : ''; ?>">
+                        <input type="text" class="form-control expediente" id="expediente" name="expediente" placeholder="Expediente" value="<?php echo $expediente; ?>">
                     </div>
                     <div class="col-md-6">
                         <label for="usuario">Usuário</label>

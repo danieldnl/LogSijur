@@ -1,14 +1,18 @@
+
 <?php include 'header.php'; ?>
 
-<?php include 'form.php'; ?>
+<?php include 'ajudantes.php'; ?>
 
 <?php
 
+$dtInicio = '';
+$dtFim = '';
+$expediente = '';
+
 if (!empty($_POST['dtInicio'])) {
-    $dtInicio = implode('-', array_reverse(explode('/', $_POST['dtInicio'])));
-    $dtInicio = date('Y-m-d H:i:s', strtotime($dtInicio));
-} else {
-    $dtInicio = '';
+    $dtInicio = date('Y-m-d H:i:s', strtotime(traduz_data_para_banco($_POST['dtInicio'])));
+} elseif (isset($_GET['dtInicio'])) {
+    $dtInicio = date('Y-m-d H:i:s', strtotime(traduz_data_para_banco($_GET['dtInicio'])));
 }
 
 //Somente executa a consulta se houver data de início digitada
@@ -25,6 +29,7 @@ if ($dtInicio != '') {
     $sqlWhere = '';
     if (!empty($_POST['expediente'])) {
         $sqlWhere = $sqlWhere . "L.CO_EXPEDIENTE = '" . $_POST['expediente'] . "' AND ";
+        $expediente = $_POST['expediente'];
     }
 
     if (!empty($_POST['usuario'])) {
@@ -32,13 +37,13 @@ if ($dtInicio != '') {
     } else {
         $sqlWhere = $sqlWhere . "SUBSTRING(L.NO_USERID, 1, 1) IN ('C','E')";
     }
-    
-    $consulta = true;
-    
-}
 
+    $consulta = true;
+}
 ?>
+
+<?php include 'form.php'; ?>
 
 <?php include 'tabela.php'; ?>
 
-<?php include 'footer.php'; 
+<?php include 'footer.php';
