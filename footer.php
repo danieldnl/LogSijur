@@ -7,8 +7,9 @@
 
 <div class="col-md-12 bg-primary footer">
     <footer>
-        <a class="footer" href="#" ></a>
-        <p class="footer">&copy; <?php echo date('Y') ?> -  Célula de Desenvolvimento - JURIR/BH</p>
+            <div class=" row col-md-offset-5"><a class="footer pull-left" href="#" ></a></div>
+            <div class=" row col-md-offset-4"><p class="footer pull-left">&copy; <?php echo date('Y') ?> -  Célula de Desenvolvimento - JURIR/BH</p></div>
+        
     </footer>
 </div>
 </body>

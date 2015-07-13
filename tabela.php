@@ -3,20 +3,21 @@
 
 <div class="col-md-12">
     <table class="table table-striped">
-        <tr>
-            <th>Matrícula</th>
-            <th>Nome</th>
-            <th>Data/Hora</th>
-            <th>Expediente</th>
-            <th>Módulo</th>
-            <th>Ação</th>
-            <th>Campo</th>
-            <th>VR Anterior</th>
-            <th>VR Atual</th>
-        </tr>
-
         <?php
         if ($consulta) {
+            
+            echo "<tr>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Data/Hora</th>
+                    <th>Expediente</th>
+                    <th>Módulo</th>
+                    <th>Ação</th>
+                    <th>Campo</th>
+                    <th>VR Anterior</th>
+                    <th>VR Atual</th>
+                  </tr>";
+            
             $sql = "SELECT L.NO_USERID, S.NOME, S.NO_USERID, L.DT_ACESSO, L.MODULO, L.CO_EXPEDIENTE, 
                     L.ACAO, L.NO_CAMPO, L.VR_ANTERIOR, L. VR_ATUAL FROM Log L
                     INNER JOIN USUARIOS S on L.NO_USERID = S.NO_USERID 
@@ -45,34 +46,33 @@
                 echo "<td>" . $results->data[$i]['VR_ATUAL'] . "</td>";
                 echo "</tr>";
             }
-            
+
             $campos = '';
             if (isset($_POST['dtInicio'])) {
-                $campos = $campos . 'dtInicio=' .$_POST['dtInicio'] . '&';
-            } elseif (isset ($_GET['dtInicio'])) {
-                $campos = $campos . 'dtInicio=' .$_GET['dtInicio'] . '&';
+                $campos = $campos . 'dtInicio=' . $_POST['dtInicio'] . '&';
+            } elseif (isset($_GET['dtInicio'])) {
+                $campos = $campos . 'dtInicio=' . $_GET['dtInicio'] . '&';
             }
 
             if (isset($_POST['dtFim'])) {
-                $campos = $campos . 'dtFim=' .$_POST['dtFim'] . '&';
-             } elseif (isset ($_GET['dtFim'])) {
-                $campos = $campos . 'dtFim=' .$_GET['dtFim'] . '&';
+                $campos = $campos . 'dtFim=' . $_POST['dtFim'] . '&';
+            } elseif (isset($_GET['dtFim'])) {
+                $campos = $campos . 'dtFim=' . $_GET['dtFim'] . '&';
             }
-            
-            if (isset($_POST['expediente'])) {
-                $campos = $campos . 'expediente=' .$_POST['expediente'] . '&';
-             } elseif (isset ($_GET['expediente'])) {
-                $campos = $campos . 'expediente=' .$_GET['expediente'] . '&';
-            }
-            
-            if (isset($_POST['usuario'])) {
-                $campos = $campos . 'usuario=' .$_POST['usuario']. '&';
-             } elseif (isset ($_GET['usuario'])) {
-                $campos = $campos . 'usuario=' .$_GET['usuario'] . '&';
-            }
-            
-            echo $Paginator->createLinks($links, 'pagination pagination-sm', $campos);
 
+            if (isset($_POST['expediente'])) {
+                $campos = $campos . 'expediente=' . $_POST['expediente'] . '&';
+            } elseif (isset($_GET['expediente'])) {
+                $campos = $campos . 'expediente=' . $_GET['expediente'] . '&';
+            }
+
+            if (isset($_POST['usuario'])) {
+                $campos = $campos . 'usuario=' . $_POST['usuario'] . '&';
+            } elseif (isset($_GET['usuario'])) {
+                $campos = $campos . 'usuario=' . $_GET['usuario'] . '&';
+            }
+
+            //echo $Paginator->createLinks($links, 'pagination pagination-sm', $campos);
             //$rs = $conn->executarSQL($sql);
 //            while ($row = $results->fetch_assoc()) {
 //                echo "<tr>";
@@ -87,7 +87,11 @@
 //                echo "<td>" . $row['VR_ATUAL'] . "</td>";
 //                echo "</tr>";
 //            }
+            echo "<div class=\"pull-right\">";
+            echo $Paginator->createLinks($links, 'pagination pagination-sm', $campos);
+            echo "</div>";
         }
         ?>
     </table>
+
 </div>
